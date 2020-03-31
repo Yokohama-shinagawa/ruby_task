@@ -43,7 +43,9 @@ def q6
   numbers1 = [1, 2, 3, 4, 5]
 
   # 以下に回答を記載
-  p numbers1.map!{|x| x*10}
+  numbers1 = [1, 2, 3, 4, 5]
+  numbers2 =  numbers1.map{|x| x*10}
+  p numbers2
 end
 
 def q7
@@ -57,16 +59,19 @@ def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  p programming_languages.map!{|x| x.capitalize!}
-  p programming_languages.map!{|x| x.upcase!}
+  rogramming_languages.map!{|x| x.capitalize!}
+  upper_case_programming_languages = programming_languages.map{|word| word.upcase}
+
+  p programming_languages
+  p upper_case_programming_languages
 end
 
 def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.each_with_index do |name,i|
-    puts "会員No.#{i+1} #{name}さん"
+  names.each.with_index(1) do |name,i|
+    puts "会員No.#{i} #{name}さん"
   end
 end
 
@@ -75,11 +80,7 @@ def q10
 
   # 以下に回答を記載
   foods.each{|word|
-    if word.include? "うに"
-        puts "好物です"
-    else
-        puts "まあまあ好きです"
-    end
+    (word.include? "うに") ? (puts "好物です") : (puts "まあまあ好きです")
   }
 end
 
@@ -129,7 +130,9 @@ def q16
   ]
 
   # 以下に回答を記載
-
+  users.each{|man|
+    puts "私の名前は#{man[:name]}です。年齢は#{man[:age]}です。"
+  }
 end
 
 class UserQ17
