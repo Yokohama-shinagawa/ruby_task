@@ -13,7 +13,7 @@ def q2
   array2 = %w(bird bat tiger)
 
   # 以下に回答を記載
-  p array1.concat(array2)
+  p array1+array2
 end
 
 def q3
@@ -27,7 +27,7 @@ def q4
   sports = ["サッカー", "フットサル", nil, "野球", "バスケ", nil, "バレー"]
 
   # 以下に回答を記載
-  p sports.compact
+  p sports.compact!
 end
 
 def q5
@@ -43,38 +43,44 @@ def q6
   numbers1 = [1, 2, 3, 4, 5]
 
   # 以下に回答を記載
-
+  p numbers1.map!{|x| x*10}
 end
 
 def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載
-
+  p array.map!{|x| x.to_i}
 end
 
 def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-
-  
-  p programming_languages
-  p upper_case_programming_languages
+  p programming_languages.map!{|x| x.capitalize!}
+  p programming_languages.map!{|x| x.upcase!}
 end
 
 def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-
+  names.each_with_index do |name,i|
+    puts "会員No.#{i+1} #{name}さん"
+  end
 end
 
 def q10
   foods = %w(いか たこ うに しゃけ うにぎり うに軍艦 うに丼)
 
   # 以下に回答を記載
-
+  foods.each{|word|
+    if word.include? "うに"
+        puts "好物です"
+    else
+        puts "まあまあ好きです"
+    end
+  }
 end
 
 def q11
