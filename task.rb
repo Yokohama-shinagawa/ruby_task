@@ -105,20 +105,14 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  user_data[:age] =  update_data[:age]
-  user_data[:address] = update_data[:address]
-  p user_data
+  p user_data.merge!(update_data)
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-  array = []
-  data.each_key{|key|
-      array << key
-  }
-  p array
+  p data.keys
 end
 
 def q15
@@ -126,8 +120,8 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  data1.has_key?(:age) ? (puts "OK") : (puts "NG")
-  data2.has_key?(:age) ? (puts "OK") : (puts "NG")
+  puts data1.has_key?(:age) ? "OK" : "NG"
+  puts data2.has_key?(:age) ?  "OK" : "NG"
 end
 
 def q16
@@ -145,15 +139,14 @@ def q16
 end
 
 class UserQ17
-  attr_accessor :name, :age, :gender, :admin
-  def initialize(name:,age:,gender:,admin:)
-      @name = name
-      @age = age
-      @gender = gender
-      @admin = admin
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+    @gender = params[:gender]
+    @admin = params[:admin]
   end
   def info
-    puts ["名前:#{@name}","年齢:#{@age}","性別:#{@gender}","管理者権限:#{@admin}"]
+    puts ["名前:#{@name}","年齢:#{@age}","性別:#{@gender}","管理者権限:#{@admin ? "あり" : "無し"}"]
   end
 end
 
@@ -168,9 +161,6 @@ def q17
 end
 
 class UserQ18
-  # 以下に回答を記載
-  attr_accessor  :name, :age
-
   def initialize(name:, age:)
       @name = name
       @age = age
@@ -178,9 +168,9 @@ class UserQ18
 
   def introduce
       if @age >= 15
-          return "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+          "こんにちは、#{@name}と申します。宜しくお願いいたします。"
       else
-          return "はいさいまいど〜，#{@name}です！！！"
+          "はいさいまいど〜，#{@name}です！！！"
       end
   end
 end
@@ -196,7 +186,7 @@ end
 
 class Item
   # 以下を修正して下さい
-  attr_accessor :name
+  attr_reader :name
   def initialize(name:)
       @name = name
   end
@@ -210,45 +200,38 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  attr_reader :name, :age
+  # コードを追加
+  def initialize(**params)
+      @name = params[:name]
+      @age = params[:age]
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+  def initialize(**params)
+    @name = params[:name]
+    @entry_fee = params[:entry_fee]
+  end
 
+  def info_entry_fee(user)
+      entry_fee_array = @entry_fee.values
+      case user.age
+      when 0..5
+          puts "#{user.name}さんの入場料金は#{entry_fee_array[0]}円です"
+      when 6..12
+          puts "#{user.name}さんの入場料金は#{entry_fee_array[1]}円です"
+      when 13..64
+          puts "#{user.name}さんの入場料金は#{entry_fee_array[2]}円です"
+      else 
+          puts "#{user.name}さんの入場料金は#{entry_fee_array[3]}円です"
+      end
+  end
 end
 
 
 def q20
-  class User
-    attr_accessor :name, :age
-    # コードを追加
-    def initialize(name:,age:)
-        @name = name
-        @age = age
-    end
-  end
-  
-  class Zoo
-    attr_accessor :name, :entry_fee
-    # コードを追加
-    def initialize(name:,entry_fee:)
-        @name = name
-        @entry_fee = entry_fee
-    end
-
-    def info_entry_fee(user)
-        if user.age <= 5
-            puts "#{user.name}さんの入場料金は#{entry_fee[:infant]}円です"
-        elsif user.age <= 12
-            puts "#{user.name}さんの入場料金は#{entry_fee[:children]}円です"
-        elsif user.age <= 64
-            puts "#{user.name}さんの入場料金は#{entry_fee[:adult]}円です"
-        else user.age <= 120
-            puts "#{user.name}さんの入場料金は#{entry_fee[:senior]}円です"
-        end
-    end
-  end
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
   zoo = Zoo.new(name: "旭山動物園", entry_fee: { infant: 0, children: 400, adult: 800, senior: 500 })
 
