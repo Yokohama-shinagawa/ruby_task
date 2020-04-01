@@ -220,6 +220,35 @@ end
 
 
 def q20
+  class User
+    attr_accessor :name, :age
+    # コードを追加
+    def initialize(name:,age:)
+        @name = name
+        @age = age
+    end
+  end
+  
+  class Zoo
+    attr_accessor :name, :entry_fee
+    # コードを追加
+    def initialize(name:,entry_fee:)
+        @name = name
+        @entry_fee = entry_fee
+    end
+
+    def info_entry_fee(user)
+        if user.age <= 5
+            puts "#{user.name}さんの入場料金は#{entry_fee[:infant]}円です"
+        elsif user.age <= 12
+            puts "#{user.name}さんの入場料金は#{entry_fee[:children]}円です"
+        elsif user.age <= 64
+            puts "#{user.name}さんの入場料金は#{entry_fee[:adult]}円です"
+        else user.age <= 120
+            puts "#{user.name}さんの入場料金は#{entry_fee[:senior]}円です"
+        end
+    end
+  end
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
   zoo = Zoo.new(name: "旭山動物園", entry_fee: { infant: 0, children: 400, adult: 800, senior: 500 })
 
