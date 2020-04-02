@@ -146,11 +146,12 @@ class UserQ17
     @admin = params[:admin]
   end
   def info
+  admin = @admin ? "あり" : "無し"
 puts <<-EOF
 名前:#{@name}
 年齢:#{@age}
 性別:#{@gender}
-管理者権限:#{@admin ? "あり" : "無し"}
+管理者権限:#{admin}
 EOF
   end
 end
@@ -164,7 +165,7 @@ def q17
   puts "-------------"
   user2.info
 end
-
+q17
 class UserQ18
   def initialize(name:, age:)
       @name = name
@@ -222,16 +223,18 @@ class Zoo
 
   def info_entry_fee(user)
       entry_fee_array = @entry_fee.values
+      entry_fee =
       case user.age
       when 0..5
-          puts "#{user.name}さんの入場料金は#{entry_fee_array[0]}円です"
+          entry_fee_array[0]
       when 6..12
-          puts "#{user.name}さんの入場料金は#{entry_fee_array[1]}円です"
+          entry_fee_array[1]
       when 13..64
-          puts "#{user.name}さんの入場料金は#{entry_fee_array[2]}円です"
+          entry_fee_array[2]
       else 
-          puts "#{user.name}さんの入場料金は#{entry_fee_array[3]}円です"
+          entry_fee_array[3]
       end
+      puts "#{user.name}さんの入場料金は#{entry_fee}円です"
   end
 end
 
@@ -251,3 +254,4 @@ def q20
     zoo.info_entry_fee(user)
   end
 end
+
