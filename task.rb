@@ -146,7 +146,12 @@ class UserQ17
     @admin = params[:admin]
   end
   def info
-    puts ["名前:#{@name}","年齢:#{@age}","性別:#{@gender}","管理者権限:#{@admin ? "あり" : "無し"}"]
+puts <<-EOF
+名前:#{@name}
+年齢:#{@age}
+性別:#{@gender}
+管理者権限:#{@admin ? "あり" : "無し"}
+EOF
   end
 end
 
